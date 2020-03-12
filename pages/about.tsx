@@ -1,13 +1,12 @@
 import { NextPage } from 'next';
 import Header from '../components/Header';
+import Layout from '../components/MyLayout';
 
 const About: NextPage<{}> = () => (
-    <div>
-    <Header />
+
+    <Layout>
     <h1>about </h1>
-
-    </div>
-
+  </Layout>
 );
 
 
