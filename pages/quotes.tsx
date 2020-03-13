@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Layout from '../components/MyLayout';
 
 function fetcher(url:string) {
   return fetch(url).then(r => r.json());
@@ -20,6 +21,7 @@ export default function Quotes() {
   if (error) quote = 'Failed to fetch the quote.';
 
   return (
+    <Layout>
     <main className="center">
       <div className="quote">{quote}</div>
       {author && <span className="author">- {author}</span>}
@@ -44,5 +46,7 @@ export default function Quotes() {
         }
       `}</style>
     </main>
-  );
+    </Layout>
+
+    );
 }
