@@ -5,6 +5,8 @@ import Layout from '../components/MyLayout';
 import { PostLinkModel } from '../models/PostLinkModel';
 import { IndexPageModel } from '../models/IndexPageModel';
 import { useEffect } from 'react';
+import Markdown from 'react-markdown';
+
 const PostLink = (props: PostLinkModel) => (
   <li>
     <Link href="/p/[id]" as={`/p/${props.id}`}>
@@ -42,6 +44,27 @@ const Home: NextPage<IndexPageModel> = (props: IndexPageModel) => {
           opacity: 0.6;
         }
       `}</style>
+      <style jsx global>{`
+      .markdown {
+        font-family: 'Arial';
+      }
+
+      .markdown a {
+        text-decoration: none;
+        color: blue;
+      }
+
+      .markdown a:hover {
+        opacity: 0.6;
+      }
+
+      .markdown h3 {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+      }
+    `}</style>
+      
       <h1>Hello world! - user agent:{props.userAgent}    </h1>
       <ul>
         <PostLink id="hello-nextjs" />
@@ -57,7 +80,21 @@ const Home: NextPage<IndexPageModel> = (props: IndexPageModel) => {
           </li>
         ))}
       </ul>
-    </Layout>
+      <div className="markdown">
+      <Markdown
+        source={`
+This is our blog post.
+Yes. We can have a [link](/link).
+And we can have a title as well.
+
+### This is a title
+
+And here's the content.
+    `}
+      />
+    </div>
+   
+      </Layout>
   )
 };
 
